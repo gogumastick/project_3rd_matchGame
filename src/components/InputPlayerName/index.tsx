@@ -53,7 +53,7 @@ const InputPlayerName = ({ btnName,setLoadingImg }: InputPlayerNameProps) => {
             setLoadingImg(true)
             setTimeout(()=>{setLoadingImg(false)},2000)
             
-            setTimeout(() => router.push('/playgame'), 1000);
+            setTimeout(() => router.push('/playgame'), 100);
             
             
         },
