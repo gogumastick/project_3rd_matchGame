@@ -94,8 +94,11 @@ const DealerShuffledCard = ({
     const [onClick, setonClick] = useState<boolean | null>(false);
     // console.log('빠르게 클릭하면?', onClick);
 
-    // setTimeout ID를 저장할 Ref라는데??
-    const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+    // questionMarkTimeout 설정으로 queue에 들어간 값을 리셋 시킬수 있다
+    const questionMarkTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+    // setTimeout(() => setActiveIndex(null), 5000) 이놈도 클릭하고 5초 이전에 클릭 하니깐 에러가 있어 보인다.
+    const activeIndexTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+    
 
     // id값이 1인 룰북 이미지 찾기
     const ruleImg = ruleBookImg.find((img) => img.id === 1);
@@ -116,17 +119,26 @@ const DealerShuffledCard = ({
         setonClick(false);
 
         // 짧은 지연 후 선택한 카드로 업데이트
+        // setTimeout(() => {
+        //     setPickedCard(card);
+        //     setActiveIndex(null);
+        // }, 3000);
         setTimeout(() => {
             setPickedCard(card);
         }, 5);
-        // 3초뒤 coverCard index값 null로 해서 flip 닫기
-        setTimeout(() => setActiveIndex(null), 3000);
+        // 5초뒤 coverCard index값 null로 해서 flip 닫기. 5초 전에 클릭 되면 queue에 다시 5초 뒤로 던져
+        if (activeIndexTimeoutRef.current) {
+            clearTimeout(activeIndexTimeoutRef.current);
+        }
+        activeIndexTimeoutRef.current = setTimeout(() => setActiveIndex(null), 5000);
+
+        
         // questionMark 10초 뒤에 작동 (타이머 새로 설정)
         // 이전 타이머가 있으면 clearTimeout으로 취소
-        if (timeoutRef.current) {
-            clearTimeout(timeoutRef.current);
+        if (questionMarkTimeoutRef.current) {
+            clearTimeout(questionMarkTimeoutRef.current);
         }
-        timeoutRef.current = setTimeout(() => setonClick(true), 10000);
+        questionMarkTimeoutRef.current = setTimeout(() => setonClick(true), 10000);
     };
 
     // 모달 열기 함수

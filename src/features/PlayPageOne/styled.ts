@@ -195,7 +195,8 @@ export const PlayPageStyled = styled.div`
     }
 
     .resetBNT svg {
-        width: 40px;
+        margin-left: -20px;
+        width: 60px;
         height: 40px;
     }
 
@@ -259,7 +260,7 @@ export const PlayPageStyled = styled.div`
         align-items: center;
     }
     .flip {
-        animation: ${rotateYAnimation} 4s ease none;
+        animation: ${rotateYAnimation} 6s ease none;
         /* opacity: 0; */
         color: rgba(51, 153, 0, 0); // 글씨 투명도 값을 0으로 해서 안보이게 안보임
         background-color: none;

@@ -19,10 +19,10 @@ const ResultModal = ({ resultModal, modalMessage, setResultModal,setTurn,setFirs
         alert('개발중입니다');
         return;
     };
-
-    // const handleOk = () => {
-    //     setResultModal(false);
-    // };
+ // 모달 닫기 함수
+    const handleCancel = () => {
+        setResultModal(false);
+    };
 
     return (
         <Modal
@@ -30,6 +30,7 @@ const ResultModal = ({ resultModal, modalMessage, setResultModal,setTurn,setFirs
             open={resultModal}
             // onOk={handleOk}
             // okText="replyModal"
+            onCancel={handleCancel}
             cancelButtonProps={{ style: { display: 'none' } }} // 취소 버튼을 숨기고 확인 버튼만 보여줍니다.
             footer={[
                 // <Button key="reply" onClick={handleOk}>
@@ -42,7 +43,7 @@ const ResultModal = ({ resultModal, modalMessage, setResultModal,setTurn,setFirs
         >
             <p>{modalMessage}</p>
             <br />
-            <p>한판 더?</p>
+            <p>한판 더?</p><br/>
             
             <RetryPlayerName btnName="reply" setResultModal={setResultModal} setTurn={setTurn} setFirstPlayerScore={setFirstPlayerScore}setSecondPlayerScore={setSecondPlayerScore} setRoster={setRoster} shuffle={shuffle}/>
         </Modal>
