@@ -13,74 +13,75 @@ const jump = keyframes`
 
 export const MainPageStyled = styled.div`
     margin-top: 50px;
-    
+
     height: 100vh;
     display: flex;
-    justify-content: center; 
+    justify-content: center;
     /* align-items: center;  */
-
 
     .mainTitle {
         /* background-color : green;
         color: gold; */
-        font-weight : bold;
+        font-weight: bold;
     }
-    .mainBox{
-        width : 600px;
-        height :720px;
-        padding : 30px;
+    .mainBox {
+        width: 600px;
+        height: 720px;
+        padding: 30px;
         /* background-color : purple; */
         /* border : solid; */
         /* opacity: 0.7; */
         z-index: 10;
         position: absolute;
-        box-shadow: 0px 0px 15px 15px  #339900;
+        box-shadow: 0px 0px 15px 15px #339900;
     }
-    .logoBox{
-        background-color : lightyellow;
+    .logoBox {
+        background-color: lightyellow;
         text-align: center;
         align-items: center;
     }
-    .titleBox{
-        background-color : white;
+    .titleBox {
+        background-color: white;
         text-align: center;
     }
-    .ruleNameBox{
-        background-color : white;
+    .ruleNameBox {
+        background-color: white;
         text-align: center;
     }
-    .explainBox{
-        padding:20px;
-        background-color : white;
+    .explainBox {
+        padding: 20px;
+        background-color: white;
+        height: 530px;
+        overflow-y: auto;
     }
-    .inputPlayerNameBox{
-        padding:0 10px 10px;
-        background-color : white;
+    .inputPlayerNameBox {
+        padding: 0 10px 10px;
+        background-color: white;
         justify-content: space-evenly;
-        width : 100%;
+        width: 100%;
     }
-    .backgoundBox{
-        filter : blur(3px);
+    .backgoundBox {
+        filter: blur(3px);
         z-index: 5;
         position: relative;
     }
 
-    .firstGridBox{
+    .firstGridBox {
         display: grid;
         grid-template-columns: repeat(5, 120px);
         grid-template-rows: repeat(3, 120px);
     }
-    .firstGridBox img{
+    .firstGridBox img {
         width: 102%;
         height: 102%;
         border: 5px solid white;
     }
-    .secondGridBox{
+    .secondGridBox {
         display: grid;
         grid-template-columns: repeat(5, 120px);
         grid-template-rows: repeat(3, 120px);
     }
-    .secondGridBox img{
+    .secondGridBox img {
         width: 102%;
         height: 102%;
         border: 5px solid white;
@@ -96,11 +97,11 @@ export const MainPageStyled = styled.div`
         vertical-align: middle; /* 이미지가 텍스트와 수평으로 맞추어지게 */
     }
 
-    .point img{
+    .point img {
         width: 25px;
         height: 25px;
     }
-    
+
     .pointJupmBox {
         display: inline-block;
         font-size: 16px;
@@ -112,45 +113,53 @@ export const MainPageStyled = styled.div`
         vertical-align: middle; /* 이미지가 텍스트와 수평으로 맞추어지게 */
     }
 
-    .pointJupm img{
+    .pointJupm img {
         width: 25px;
         height: 25px;
         animation: ${jump} 1.5s ease-in-out infinite;
     }
 
-    .logoBox img{
+    .logoBox img {
         width: 40px;
         height: 40px;
         animation: ${jump} 1.3s ease-in-out infinite;
     }
 
-    .loadingImgBox{
+    .loadingImgBox {
         z-index: 15;
         position: absolute;
         display: flex;
         flex-direction: column; /* 수직 정렬을 위한 설정 */
         justify-content: center; /* 수직 중앙 정렬 */
         align-items: center; /* 가로 중앙 정렬 */
-        width : 600px;
-        height :720px;
+        width: 600px;
+        height: 720px;
         /* width: 100%; */
         background-color: white;
         font-size: 40px;
-        font-weight : bold;
+        font-weight: bold;
     }
     .loadingText {
         background-color: gold; /* 원하는 배경색 */
-      
     }
 
-    .loadingImg{
+    .loadingImg {
         display: flex;
         width: 200px;
         height: 200px;
-        animation: ${jump} 0.5s ease-in-out infinite
+        animation: ${jump} 0.5s ease-in-out infinite;
     }
-    .noLoadingImgBox{
+    .noLoadingImgBox {
         display: none;
     }
 
+    @media (max-width: 768px) {
+        margin-top: 30px;
+        display: flex;
+        justify-content: center;
+        .mainBox {
+            width: 400px;
+            height: 720px;
+        }
+    }
 `;
