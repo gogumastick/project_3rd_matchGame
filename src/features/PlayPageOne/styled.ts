@@ -114,6 +114,7 @@ export const PlayPageStyled = styled.div`
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        margin-top: 80px;
     }
 
     .centerTopBox {
@@ -134,7 +135,7 @@ export const PlayPageStyled = styled.div`
     .logoImg {
         width: 70px;
         height: 70px;
-        margin-left :30px;
+        margin-left: 30px;
         /* background-color: darkslateblue; */
         position: relative;
     }
@@ -145,7 +146,6 @@ export const PlayPageStyled = styled.div`
         position: absolute;
         transform: translate(10%, -40%);
         visibility: ${({ onClick }) => (onClick ? 'visible' : 'hidden')}; /* true일 때 보이고, false일 때 숨김 */
-        
     }
 
     .ruleBook {
@@ -164,13 +164,8 @@ export const PlayPageStyled = styled.div`
             transform: scale(1.1); /* 이미지 확대 */
             filter: brightness(1.2); /* 밝기 증가 */
             cursor: pointer; /* 마우스 커서를 포인터로 변경 */
-            
         }
-        
     }
-    
-
-
 
     .resetBox {
         flex: 1;
@@ -194,9 +189,9 @@ export const PlayPageStyled = styled.div`
         position: relative;
         /* background-color: whitesmoke; */
         width: 100%;
-        font-weight : bold;
+        font-weight: bold;
         /* height :100%; */
-         /* padding: 0 100px; */
+        /* padding: 0 100px; */
     }
 
     .resetBNT svg {
@@ -392,6 +387,12 @@ export const PlayPageStyled = styled.div`
     .ant-input {
         width: 190px;
         box-shadow: 0px 0px 2px 2px #339900;
+        color: #000000; /* 글자색을 진하게 */
+        font-weight: bold; /* 글자 굵기 설정 */
+
+        &::placeholder {
+            color: #808080;
+        }
     }
     .ant-input:hover {
         width: 190px;
@@ -399,10 +400,37 @@ export const PlayPageStyled = styled.div`
     }
     .ant-btn {
         box-shadow: 0px 0px 2px 2px #339900;
+        font-weight: bold;
     }
     .ant-btn:hover {
         background-color: green !important;
         color: gold !important;
         font-weight: bold !important;
+    }
+    @media (max-width: 768px) {
+        .firstPlayerName {
+            width: 150px;
+        }
+        .secondPlayerName {
+            width: 150px;
+        }
+        .coverBox {
+            grid-template-columns: repeat(4, 90px);
+            grid-template-rows: repeat(4, 90px);
+            font-size: 60px;
+        }
+        .dealerBox {
+            grid-template-columns: repeat(4, 90px);
+            grid-template-rows: repeat(4, 90px);
+        }
+        .LeftBox {
+            margin-top: 30px;
+        }
+        .RightBox {
+            margin-top: 30px;
+        }
+        .centerWrap {
+            margin-top: 100px;
+        }
     }
 `;

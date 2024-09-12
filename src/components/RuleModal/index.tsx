@@ -21,6 +21,9 @@ const RuleModal = ({ ruleModal, setRuleModal }: RuleModalProps) => {
     const handleOk = () => {
         setRuleModal(false);
     };
+    const handleCancel = () => {
+        setRuleModal(false);
+    };
 
     // const handleCancel = () => {
     //     setRuleModal(false);
@@ -33,6 +36,7 @@ const RuleModal = ({ ruleModal, setRuleModal }: RuleModalProps) => {
                 
                 open={ruleModal}
                 onOk={handleOk}
+                onCancel={handleCancel}
                 okText="게임으로 돌아가기"
                 // onCancel={handleCancel}
                 cancelButtonProps={{ style: { display: 'none' } }}

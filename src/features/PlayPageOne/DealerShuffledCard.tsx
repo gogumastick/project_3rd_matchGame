@@ -22,7 +22,7 @@
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { PlayPageStyled } from './styled';
 import { useState, useEffect } from 'react';
-
+import { useRef } from 'react';
 import Reset from '@/components/Reset';
 import RuleModal from '@/components/RuleModal';
 
@@ -91,7 +91,11 @@ const DealerShuffledCard = ({
     const [activeIndex, setActiveIndex] = useState<number | null>(null);
     // console.log('activeIndex 넌 뭔데', activeIndex);
 
-    const [onClick, setonClick] = useState<boolean| null>(false);
+    const [onClick, setonClick] = useState<boolean | null>(false);
+    // console.log('빠르게 클릭하면?', onClick);
+
+    // setTimeout ID를 저장할 Ref라는데??
+    const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
     // id값이 1인 룰북 이미지 찾기
     const ruleImg = ruleBookImg.find((img) => img.id === 1);
@@ -99,25 +103,30 @@ const DealerShuffledCard = ({
     const pickBNT = (card: CardProps, index: number) => {
         // console.log('pickBNT card 뭐냐', card);
         // console.log('선택된 카드의 배열 index는', index);
-
         // const pickedCoverCard = cards[index];
         // console.log('coverCard의 배열 index를 찾고 싶습니다.',pickedCoverCard);
 
-        // setPickedCard(card);
         // 선택한 카드가 현재 pickedCard와 동일한 경우에도 상태를 변경
         // 임시로 null로 설정하여 상태를 강제로 리셋
         setPickedCard(null);
+        // setPickedCard(card);
 
         setActiveIndex(index);
 
         setonClick(false);
 
         // 짧은 지연 후 선택한 카드로 업데이트
-        setTimeout(() => {setPickedCard(card)}, 5);
+        setTimeout(() => {
+            setPickedCard(card);
+        }, 5);
         // 3초뒤 coverCard index값 null로 해서 flip 닫기
         setTimeout(() => setActiveIndex(null), 3000);
-         // questionMark 15초 뒤에 작동
-        setTimeout(() => setonClick(true), 15000);
+        // questionMark 10초 뒤에 작동 (타이머 새로 설정)
+        // 이전 타이머가 있으면 clearTimeout으로 취소
+        if (timeoutRef.current) {
+            clearTimeout(timeoutRef.current);
+        }
+        timeoutRef.current = setTimeout(() => setonClick(true), 10000);
     };
 
     // 모달 열기 함수
@@ -132,9 +141,14 @@ const DealerShuffledCard = ({
                     <div className="centerTopBox">
                         <div className="logo">
                             {logo && <img className="logoImg" src={logo.src.src} alt={logo.name} />}
-                            {questionMark && 
-                                <img className="questionMarkImg" src={questionMark.src.src} alt={questionMark.name} style={{ visibility: onClick ? 'visible' : 'hidden' }}  />
-                            }
+                            {questionMark && (
+                                <img
+                                    className="questionMarkImg"
+                                    src={questionMark.src.src}
+                                    alt={questionMark.name}
+                                    style={{ visibility: onClick ? 'visible' : 'hidden' }}
+                                />
+                            )}
                         </div>
                         <div className="ruleBook">
                             {ruleImg && (
@@ -145,7 +159,6 @@ const DealerShuffledCard = ({
                                     onClick={showModal}
                                 />
                             )}
-                            
                         </div>
                         <div className="resetBox">
                             <Reset

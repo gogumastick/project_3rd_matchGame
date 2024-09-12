@@ -10,10 +10,10 @@ import { setTimeout } from 'timers';
 
 interface InputPlayerNameProps {
     btnName: string;
-    setLoadingImg:(loadingImg:boolean)=>void;
+    setLoadingImg: (loadingImg: boolean) => void;
 }
 
-const InputPlayerName = ({ btnName,setLoadingImg }: InputPlayerNameProps) => {
+const InputPlayerName = ({ btnName, setLoadingImg }: InputPlayerNameProps) => {
     const router = useRouter();
     // console.log('modal에서 쏜 btn값',btnName);
 
@@ -22,7 +22,6 @@ const InputPlayerName = ({ btnName,setLoadingImg }: InputPlayerNameProps) => {
     // console.log('선수 이름 적는데 뭐오냐', roster);
 
     // const [btnName, setBtnName] =useState<string>('시작버튼')
-    
 
     const firstPlayerNameRef = useRef<InputRef | null>(null);
     const secondPlayerNameRef = useRef<InputRef | null>(null);
@@ -50,12 +49,14 @@ const InputPlayerName = ({ btnName,setLoadingImg }: InputPlayerNameProps) => {
 
             // 로컬 스토리지에 roster 저장
             localStorage.setItem('roster', JSON.stringify(newRoster));
-            setLoadingImg(true)
-            setTimeout(()=>{setLoadingImg(false)},2000)
+            setLoadingImg(true);
+            // setTimeout(()=>{setLoadingImg(false)},1700)
+            // setTimeout(() => router.push('/playgame'), 10);
             
-            setTimeout(() => router.push('/playgame'), 100);
-            
-            
+            setTimeout(() => {
+                setLoadingImg(false);
+                router.push('/playgame');
+            }, 1700);
         },
     });
 
@@ -73,28 +74,27 @@ const InputPlayerName = ({ btnName,setLoadingImg }: InputPlayerNameProps) => {
 
     return (
         <PlayPageStyled>
-        <div className="inputPlayerNameFormBox">
-            <form className="inputPlayerNameForm" onSubmit={rosterFormik.handleSubmit}>
-                <Input
-                    name="firstPlayerName"
-                    onChange={rosterFormik.handleChange}
-                    value={rosterFormik.values.firstPlayerName}
-                    placeholder="참가자 이름을 적어주세요"
-                    ref={firstPlayerNameRef}
-                />
-                <Input
-                    name="secondPlayerName"
-                    onChange={rosterFormik.handleChange}
-                    value={rosterFormik.values.secondPlayerName}
-                    // value={roster.length > 0 ? roster[1] : rosterFormik.values.secondPlayerName}
-                    placeholder="다른 참가자 이름도 적어주세요"
-                    ref={secondPlayerNameRef}
-                />
-                <Button htmlType="submit">{btnName}</Button>
-            </form>
-        </div>
+            <div className="inputPlayerNameFormBox">
+                <form className="inputPlayerNameForm" onSubmit={rosterFormik.handleSubmit}>
+                    <Input
+                        name="firstPlayerName"
+                        onChange={rosterFormik.handleChange}
+                        value={rosterFormik.values.firstPlayerName}
+                        placeholder="참가자 이름을 적어주세요"
+                        ref={firstPlayerNameRef}
+                    />
+                    <Input
+                        name="secondPlayerName"
+                        onChange={rosterFormik.handleChange}
+                        value={rosterFormik.values.secondPlayerName}
+                        // value={roster.length > 0 ? roster[1] : rosterFormik.values.secondPlayerName}
+                        placeholder="다른 참가자 이름도 적어주세요"
+                        ref={secondPlayerNameRef}
+                    />
+                    <Button htmlType="submit">{btnName}</Button>
+                </form>
+            </div>
         </PlayPageStyled>
-
     );
 };
 

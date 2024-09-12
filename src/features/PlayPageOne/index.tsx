@@ -1,5 +1,5 @@
 // import { playCard } from '@/utill/data';
-import { playCard, point, playerBoardWinnerLoserImg, ruleBookImg, logo,questionMark } from '@/utill/data';
+import { playCard, point, playerBoardWinnerLoserImg, ruleBookImg, logo, questionMark } from '@/utill/data';
 import { PlayPageStyled } from './styled';
 import { useState } from 'react';
 import { useEffect } from 'react';
@@ -128,15 +128,15 @@ const PlayPageOne = () => {
     useEffect(() => {
         // pickedCard가 null이면 아무 작업도 하지 않음
         if (pickedCard === null) return;
-
-        // 1P 턴
+        
         if (turn) {
             // 첫 번째 플레이어의 턴
             if (pickedCard.id === firstPlayerMatchingCard?.id) {
                 setFirstPlayerScore(firstPlayerScore - 1);
             } else {
                 setFirstPlayerScore(firstPlayerScore + 1);
-                setTurn(false); // 턴을 두 번째 플레이어로 넘김
+                // 턴을 두 번째 플레이어로 넘김
+                setTurn(false);
             }
         } else {
             // 두 번째 플레이어의 턴
@@ -144,7 +144,8 @@ const PlayPageOne = () => {
                 setSecondPlayerScore(secondPlayerScore - 1);
             } else {
                 setSecondPlayerScore(secondPlayerScore + 1);
-                setTurn(true); // 턴을 첫 번째 플레이어로 넘김
+                // 턴을 첫 번째 플레이어로 넘김
+                setTurn(true);
             }
         }
 
@@ -177,7 +178,7 @@ const PlayPageOne = () => {
             <PlayPageStyled>
                 <div className="LeftBox">
                     <div className={`firstPlayerName ${turn === true ? 'bright' : ''}`}>
-                        {roster[0] ? `1st ${roster[0]}` : '1 Player 미등록'}
+                        {roster[0] ? <>1st<br/> {roster[0]}</> : '1 Player 미등록'}
                     </div>
                     {/* <div>{firstPlayerScore + 1}</div> */}
                     <div className="LeftPlayerBox">
@@ -207,7 +208,7 @@ const PlayPageOne = () => {
                 </div>
                 <div className="RightBox">
                     <div className={`secondPlayerName ${turn === false ? 'bright' : ''}`}>
-                        {roster[1] ? `2nd ${roster[1]}` : '2 Player 미등록'}
+                        {roster[1] ? <>2nd<br/> {roster[1]}</>  : '2 Player 미등록'}
                     </div>
                     {/* <div>{secondPlayerScore + 1}</div> */}
                     <div className="RightPlayerBox">

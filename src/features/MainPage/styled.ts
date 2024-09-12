@@ -17,13 +17,22 @@ export const MainPageStyled = styled.div`
     height: 100vh;
     display: flex;
     justify-content: center;
-    /* align-items: center;  */
+    align-items: center;
 
     .mainTitle {
         /* background-color : green;
         color: gold; */
         font-weight: bold;
     }
+    .mainWrap {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        width: 100%;
+        height: 100vh;
+    }
+
     .mainBox {
         width: 600px;
         height: 720px;
@@ -33,6 +42,7 @@ export const MainPageStyled = styled.div`
         /* opacity: 0.7; */
         z-index: 10;
         position: absolute;
+        /* position: relative; */
         box-shadow: 0px 0px 15px 15px #339900;
     }
     .logoBox {
@@ -154,12 +164,53 @@ export const MainPageStyled = styled.div`
     }
 
     @media (max-width: 768px) {
-        margin-top: 30px;
         display: flex;
-        justify-content: center;
+        .mainWrap {
+            margin-top: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100vh;
+        }
         .mainBox {
-            width: 400px;
+            width: 90%;
             height: 720px;
+            /* z-index: 10; */
+            /* position: relative; */
+            /* position: absolute; */
+            box-shadow: none;
+        }
+        .backgoundBox {
+            /* display: flex; */
+            width: 90%;
+            height: 720px;
+            /* z-index: 5; */
+            /* position: relative; */
+        }
+        .firstGridBox {
+            /* display: grid; */
+            grid-template-columns: repeat(3, 120px);
+            grid-template-rows: repeat(5, 120px);
+        }
+        .firstGridBox img {
+            width: 90%;
+            height: 90%;
+            border: 5px solid white;
+        }
+        .secondGridBox {
+            /* display: grid; */
+            grid-template-columns: repeat(3, 120px);
+            grid-template-rows: repeat(1, 120px);
+        }
+        .secondGridBox img {
+            width: 90%;
+            height: 90%;
+            border: 5px solid white;
+        }
+        .loadingImgBox {
+            width: 100%;
         }
     }
 `;
