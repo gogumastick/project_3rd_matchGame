@@ -200,6 +200,7 @@ const DealerShuffledCard = ({
                                     src={card.src.src}
                                     alt={card.name}
                                     onClick={() => pickBNT(card, index)}
+                                    draggable="false"
                                 />
                             ))}
                         </div>
